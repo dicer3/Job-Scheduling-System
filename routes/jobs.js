@@ -29,7 +29,6 @@ const newJob=(id,callback)=>{
 router.get("/createjob/:id",(req,res)=>{
        priority = priority + 1;
        synQueue.enqueue(req.params.id); // push task to synchronous queue
-
        // push task to asynchronous queue
        taskQueue.push({fn:newJob,id:req.params.id},priority,(err)=>{
            // when task is completed , then remove it from synchronous queue
@@ -42,8 +41,9 @@ router.get("/createjob/:id",(req,res)=>{
 
 // @route   GET api/showalljobs
 // @desc    show all the jobs which are in running queue
-router.get("/showalljobs",(req,res)=>{
-  res.send(synQueue.print()); // return the curernt synchronous queue
+router.post("/showalljobs",(req,res)=>{
+  console.log("in current jobs");  
+  res.send(synQueue.getAllCurrentJobs()); // return the curernt synchronous queue
 })
 
 // @route   GET api/abort/:id

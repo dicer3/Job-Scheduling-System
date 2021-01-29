@@ -63,13 +63,10 @@ class PriorityQueue {
         return this.items[this.items.length - 1]; 
     } 
 
-    // printQueue function 
+    // getAllCurrentJobs function 
     // prints all the element of the queue 
-    print() { 
-        var str = ""; 
-        for (var i = 0; i < this.items.length; i++) 
-            str += this.items[i].element + " " + this.items[i].priority+ "\n"; 
-        return str; 
+    getAllCurrentJobs() { 
+         return this.items.map(ele=>ele.element);
     } 
 
     //removeElement function
