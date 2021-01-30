@@ -8,14 +8,17 @@ const CreateNewJob = () => {
         mounted.current = true; 
         else{
             setTimeout(() => {
-                setText("");
+                setText(""); // make error or success disapper after some time
             }, 5000);
         } 
     });
-    
+
     const makeNewJob=async()=>{
-        const id = await createJob();
-        setText(`job created with id ${id}`)
+        const {id,data} = await createJob();
+        if(data!=="job created")
+            setText(data); // if job was not successfully created then display the error message
+        else  
+            setText(`job created with id ${id}`); // if job is successfully created then display a success message
     }
     return (
         <div>

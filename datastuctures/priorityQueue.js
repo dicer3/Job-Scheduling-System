@@ -51,6 +51,16 @@ class PriorityQueue {
         // return true if the queue is empty. 
         return this.items.length == 0; 
     } 
+    
+    // front function 
+    front() 
+    { 
+	    // returns the highest priority element 
+	    // in the Priority queue without removing it. 
+	    if (this.isEmpty()) 
+		    return "No elements in Queue"; 
+	    return this.items[0].element; 
+    } 
 
     // rear function 
     rear() { 
@@ -90,6 +100,15 @@ class PriorityQueue {
                     this.items[i].priority = this.items[i].priority-1; // if process is deleted then rearrange the priorities
             }
         }
+    }
+
+    //checkIfJobsExists
+    checkJobExists(id){
+        for(var i=0;i<this.items.length;i++){
+            if(this.items[i].element === id)
+               return true;
+        }
+        return false;
     }
 
 } 

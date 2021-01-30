@@ -1,23 +1,44 @@
 import axios from "axios"; 
 import { v4 as uuidv4 } from 'uuid';
 
+// sending request to backend for creating a new job 
 export const createJob = async() =>{
-   let id = uuidv4();
-   id=id.slice(0,4); 
-   await axios.get(`/api/createjob/${id}`);
-   return id;
+   try{ 
+        let id = uuidv4(); // creating a unique id for each job using uuid library
+        id=id.slice(0,4); // making id little shorter
+        const res = await axios.get(`/api/createjob/${id}`);
+        return {id,data:res.data};
+   }catch(err){
+      console.log(err.response.statusText);
+   }
 }
 
+// sending request to backend for showing the current status of jobs
 export const showCurrentJobs = async() =>{
-    const res = await axios.post(`/api/showalljobs`);
-    console.log("res ",res.data);
-    return res.data;
+    try{ 
+        const res = await axios.post(`/api/showalljobs`);
+        return res.data;
+    }catch(err){
+        console.log(err.response.statusText);
+    }
 }
 
+// sending request to backend for aborting a job
 export const abortJob = async(id) => {
-    const res = await axios.get(`/api/abort/${id}`);
+    try{ 
+        const res = await axios.get(`/api/abort/${id}`);
+        return res.data;
+    }catch(err){
+        console.log(err.response.statusText);
+     }
 }
 
+// sending request to backend for deleting a job
 export const deleteJob = async(id) => {
-    const res = await axios.get(`/api/remove/${id}`);
+    try{   
+       const res = await axios.get(`/api/remove/${id}`);
+       return res.data;
+    }catch(err){
+        console.log(err.response.statusText);
+    }   
 }

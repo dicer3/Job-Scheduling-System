@@ -27,6 +27,10 @@ const newJob=(id,callback)=>{
 // @route   GET api/createjob/:id
 // @desc    create a new job
 router.get("/createjob/:id",(req,res)=>{
+
+       // send error if job already exists
+       if(synQueue.checkJobExists(req.params.id))
+            return res.send("job already exists");
        priority = priority + 1;
        synQueue.enqueue(req.params.id); // push task to synchronous queue
        // push task to asynchronous queue
@@ -41,34 +45,52 @@ router.get("/createjob/:id",(req,res)=>{
 
 // @route   GET api/showalljobs
 // @desc    show all the jobs which are in running queue
-router.post("/showalljobs",(req,res)=>{
-  console.log("in current jobs");  
+router.post("/showalljobs",(req,res)=>{  
   res.send(synQueue.getAllCurrentJobs()); // return the curernt synchronous queue
 })
 
 // @route   GET api/abort/:id
 // @desc    abort a job and shift it's priority
 router.get("/abort/:id",(req,res)=>{
-    // remove task to synchronous queue
+
+    if(!synQueue.checkJobExists(req.params.id))
+       return res.send("job does not exist");
+    
+    if(synQueue.front()===req.params.id){
+        return res.send("running job can't be aborted");    
+    }
+        // remove task to synchronous queue
     taskQueue.remove((task)=>{
         return task.data.id === req.params.id
     }) 
     // remove task to asynchronous queue
     synQueue.remove(req.params.id);
-    // add task to synchronous queue with highest priority
+    /* add task to synchronous queue with highest priority
+    task would be added behind running task */
     synQueue.enqueue(req.params.id,1);
-    // add task to asynchronous queue with highest priority
+    /* add task to asynchronous queue with highest priority
+      task would be added to second position behind running task
+    */
     taskQueue.push({fn:newJob,id:req.params.id},1, (err)=> {
         // when task is completed , then remove it from synchronous queue
         synQueue.remove(req.params.id);
     });
 
-    res.send("done");
+    res.send("aborted");
 });
 
 // @route   GET api/delete/:id
 // @desc    delete a job
 router.get("/remove/:id",(req,res)=>{
+
+    // check if job is present in queue
+    if(!synQueue.checkJobExists(req.params.id))
+        return res.send("job does not exist");
+ 
+    // check if job which is to be aborted is not running    
+    if(synQueue.front()===req.params.id)
+        return res.send("running job can't be deleted");  
+    
     // remove task to asynchronous queue
     taskQueue.remove((task)=>{
         return task.data.id === req.params.id
