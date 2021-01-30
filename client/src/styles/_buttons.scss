@@ -1,0 +1,22 @@
+.button-style {
+  color: $dark-brown;
+  background: $light-brown;
+  border: none;
+  margin: 5px;
+  padding: $s-size;
+  font-size: 1rem;
+  text-align: center;
+  width: 300px;
+}
+.button-secondary {
+  @extend .button-style;
+  font-size: 15px;
+  background: $light-orange;
+  width: 110px;
+}
+.button-style:hover {
+  background: lighten($light-brown, 5);
+}
+.button-secondary:hover {
+  background: darken($light-orange, 5);
+}

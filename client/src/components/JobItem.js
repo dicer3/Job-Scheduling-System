@@ -17,7 +17,7 @@ const JobItem = ({job}) => {
        if(res!=="aborted")
            changeFunction(res); // if job was not successfully aborted then display the error message
        else 
-           changeFunction("job aborted");  // if job was successfully aborted then display the success message
+           changeFunction("Job Aborted");  // if job was successfully aborted then display the success message
      });
     }
     const deleteCurrJob=async()=>{
@@ -25,15 +25,19 @@ const JobItem = ({job}) => {
           if(res!=="removed")
             changeFunction(res); // if job was not successfully deleted then display the error message
           else 
-            changeFunction("job deleted"); // if job was successfully deleted then display the success message
+            changeFunction("Job Deleted"); // if job was successfully deleted then display the success message
        })
     }
     return(
-      <div style={{"margin":"5px"}}>{job}{"  "}
-      <button onClick={abortCurrjob}>Abort Job</button>{" "}
-      <button onClick={deleteCurrJob}>Delete Job</button>
-      <p>{!!changeStatus && changeStatus}</p>
-      </div>
+      <div className="list-item">
+        <div>Running Job : <b>{job}</b></div>
+        <div>
+            <button onClick={abortCurrjob} className="button-secondary">Abort Job</button>
+            <button onClick={deleteCurrJob} className="button-secondary">Delete Job</button>
+            <p>{!!changeStatus && changeStatus}</p>
+        </div>
+
+      </div>  
     )
 }
 export default JobItem;

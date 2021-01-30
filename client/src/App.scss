@@ -1,0 +1,18 @@
+@import "./styles/settings";
+@import "./styles/navbar";
+@import "./styles/buttons";
+@import "./styles/list";
+
+.box {
+  height: 300px;
+  height: 150vh;
+  width: 100vw;
+  color: #808000;
+  background-color: #ffe4b5;
+  text-align: center;
+  padding: 30px;
+}
+
+.job-status {
+  font-weight: 400;
+}

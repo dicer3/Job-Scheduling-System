@@ -12,9 +12,13 @@ const ShowJobs=()=>{
     }
     return (
         <div>
-            <button onClick={showCurrJobs}>show current jobs</button>
-            <div>{displayJobs && allJobs.length===0 ? <p>No Jobs In Queue</p> :
-             allJobs.map((job)=><JobItem key={job} job={job} />)}</div>
+            <button onClick={showCurrJobs} className="button-style">Show Current Jobs</button>
+
+            <div className="list">
+                {displayJobs && <div className="list-header">Jobs in Action </div>}
+                {displayJobs && allJobs.length===0 ? <div className="single-item">No Jobs In Queue</div> :
+                allJobs.map((job)=><JobItem key={job} job={job} />)}
+             </div>
         </div>
     )
 }

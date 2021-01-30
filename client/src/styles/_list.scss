@@ -1,0 +1,31 @@
+.list {
+  margin: $l-size auto;
+  max-width: 60rem;
+  background: #ffffbb;
+}
+
+.list-header {
+  background: #ffff66;
+  border: 1px solid darken($yellow-border, 20%);
+  color: $dark-brown;
+  text-align: center;
+  padding: 5px;
+}
+
+.single-item {
+  padding: $s-size;
+  text-align: center;
+  color: $dark-grey;
+  color: $dark-brown;
+  border: 1px solid darken($yellow-border, 20%);
+  border-top: none;
+}
+
+.list-item {
+  @extend .single-item;
+  padding: $m-size;
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  text-decoration: none;
+}

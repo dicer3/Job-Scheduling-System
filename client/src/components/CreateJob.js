@@ -18,12 +18,12 @@ const CreateNewJob = () => {
         if(data!=="job created")
             setText(data); // if job was not successfully created then display the error message
         else  
-            setText(`job created with id ${id}`); // if job is successfully created then display a success message
+            setText(`Job created with ID : ${id}`); // if job is successfully created then display a success message
     }
     return (
         <div>
-            <button onClick={makeNewJob}>Create Job</button>
-            <p>{text}</p>
+            <button onClick={makeNewJob} className="button-style">Create Job</button>
+            <p className="job-status">{text}</p>
         </div>
     );
 }
