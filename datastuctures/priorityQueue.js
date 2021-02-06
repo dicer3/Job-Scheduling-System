@@ -58,7 +58,7 @@ class PriorityQueue {
 	    // returns the highest priority element 
 	    // in the Priority queue without removing it. 
 	    if (this.isEmpty()) 
-		    return "No elements in Queue"; 
+		    return -1; 
 	    return this.items[0].element; 
     } 
 
@@ -67,7 +67,7 @@ class PriorityQueue {
         // returns the lowest priorty 
         // element of the queue 
         if (this.isEmpty()) {
-            console.log("No elements in Queue");
+            //console.log("No elements in Queue");
             return -1;
         }     
         return this.items[this.items.length - 1]; 
@@ -88,7 +88,6 @@ class PriorityQueue {
             if(this.items[i].element===id){
                 index = this.items.map((ele)=>ele.element).indexOf(id);
                 if(index!=-1){
-                    console.log("Removed "+id);
                     this.items.splice(index,1); // if process is found then remove from queue
                 } 
                 else 
@@ -101,6 +100,13 @@ class PriorityQueue {
             }
         }
     }
+
+    //changePriority
+    changePriority(id,priority){
+        this.remove(id);
+        this.enqueue(id,priority);
+    }
+
 
     //checkIfJobsExists
     checkJobExists(id){
