@@ -20,3 +20,17 @@
 .button-secondary:hover {
   background: darken($light-orange, 5);
 }
+
+.button-secondary-plus {
+  border: none;
+  background: none;
+  color: $dark-brown;
+  margin: 5px;
+}
+
+input {
+  width: 100px;
+  border: 1px solid #cacccd;
+  height: 30px;
+  font-weight: 300;
+}

@@ -24,8 +24,11 @@
 .list-item {
   @extend .single-item;
   padding: $m-size;
-  display: flex;
-  justify-content: space-between;
   margin: 0;
   text-decoration: none;
+}
+
+.job-functions {
+  display: flex;
+  justify-content: space-between;
 }

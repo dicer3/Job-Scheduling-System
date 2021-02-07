@@ -5,7 +5,7 @@
 
 .box {
   height: 300px;
-  height: 150vh;
+  height: 400vh;
   width: 100vw;
   color: #808000;
   background-color: #ffe4b5;
@@ -15,4 +15,8 @@
 
 .job-status {
   font-weight: 400;
+}
+
+button {
+  outline: none;
 }

@@ -4,11 +4,9 @@ const Note=()=>{
        <div className="list">
            <div className="list-header">Note</div>
            <div className="single-item">
-           The Above Table shows Jobs in Process which are processed in Queue . Each Job takes 20 seconds to process 
-           the jobs above in the table will be executed first then the later . jobs can aborted and deleted .
-           Running Job can't be aborted (which is highest in Queue) .Aborted Job Priorirty will be increased and 
-           assigned behind the Running Job , deleted Job will be removed from Queue . someone will not able to abort or delete 
-           job which has finished executing , if someone does so <b>Job doesn't exist</b> message will come
+           There are two tables first one shows executing jobs by worker threads and second table represents Queue of waiting jobs .
+           Each Job has a priority in waiting queue . jobs coming up in the table have a greator priority and will be executed by worker threads first
+           jobs can aborted and deleted and thier priority can be changed . someone will not able to abort , delete or change priority of running job
            </div>
        </div>
    )
